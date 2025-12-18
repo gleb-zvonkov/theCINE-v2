@@ -116,6 +116,11 @@ function App() {
           placeholder="What type of movie are you looking for ..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)} // Update the searchQuery state
+          onKeyDown={(e) => {              //if the user presses enter then run search
+            if (e.key === "Enter") {
+              handleSearch();
+            }
+          }}
         />
         <Button
           style={{ height: "50px" }}
@@ -129,7 +134,6 @@ function App() {
       {/* Shows loading skeletons while movies are loading. */}
       {loading ? (
         <div>
-
           {showDelayedMessage && (
             <div
               style={{

@@ -7,6 +7,7 @@
  * 
  * Note: This method is a hacky workaround and may break if YouTube changes their page structure.
  */
+import fs from "fs";
 
 import axios from "axios";
 
@@ -17,9 +18,15 @@ export async function getYoutubeId(searchQuery) {
   const response = await axios.get(searchUrl); //make a get request to the url using axious
   const html = response.data; //get the html from the response
 
-  // very hacky way of getting the youtube video id
-  const matchIndex = html.indexOf('"videoRenderer"'); //find the index of video render this is close to the youtube video id
-  const videoId = html.substring(matchIndex + 28, matchIndex + 39); //get the youtube video id
+
+  const match = html.match(/"videoId":"([a-zA-Z0-9_-]{11})"/);     // find the video
+
+  if (!match) {
+    console.log("No videoId found");
+    return null;
+  }
+
+  const videoId = match[1];   // get the first match 
 
   return videoId; //return the video id
 }

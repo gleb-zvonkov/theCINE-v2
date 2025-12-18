@@ -71,7 +71,7 @@ app.use("/api/recommended", recommendedMoviesRouter);
 
 app.use("/api/cloud_storage", uploadRouter); //for upload images to deep ocean
 
-app.use("/api/gpt", gptRouter); //for upload images to deep ocean
+app.use("/api/gpt", gptRouter); 
 
 //Listen to incoming requests
 app.listen(PORT, () => {

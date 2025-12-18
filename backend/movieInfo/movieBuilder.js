@@ -30,7 +30,7 @@ function extractMovieInfo(movie) {
 
 // Builds a complete movie object with additional data like YouTube ID and streaming provider
 async function buildMovieObject(movie) {
-  const youtubeId = await getYoutubeId(movie.title);
+  const youtubeId = await getYoutubeId(`${movie.title} trailer`);
   const streamingProvider = await getStreamingProvider(movie.id);
   return {
     ...extractMovieInfo(movie),
